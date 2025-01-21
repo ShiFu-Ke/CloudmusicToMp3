@@ -40,12 +40,9 @@ def flac_to_mp3(flac_file_path, mp3_file_path):
 
 
 if __name__ == "__main__":
-    # 配置
-    dir_path = "C:\\Users\\zj\\Desktop\\新建文件夹"
     list_flac = open_files_dialog()
 
     # 执行转换
-
     length = len(list_flac)
     if length == 0:
         print("未选择文件！")
