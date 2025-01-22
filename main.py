@@ -46,6 +46,7 @@ if __name__ == "__main__":
     length = len(list_flac)
     if length == 0:
         print("未选择文件！")
+        exit(1)
     times = 0
     print("开始转换...\n")
     for i in list_flac:
