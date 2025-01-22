@@ -18,18 +18,15 @@ def open_files_dialog():
     lps_filter = "cloudmusic Files|*.ncm;*.flac"
 
     # 创建打开文件对话框对象并启用多选
-    dlg = CreateFileDialog(True, None, None,
-                           OFN_FILEMUSTEXIST | OFN_ALLOWMULTISELECT,
-                           lps_filter)
-    if dlg.DoModal() == IDOK:  # 检查是否点击了“打开”
-        return dlg.GetPathNames()  # 获取选择的文件名称列表
+    dlg = CreateFileDialog(True, None, None, OFN_FILEMUSTEXIST | OFN_ALLOWMULTISELECT, lps_filter)
+    if dlg.DoModal() == IDOK:
+        return dlg.GetPathNames()
     return []
 
 
 def flac_to_mp3(flac_file_path, mp3_file_path):
     """
     将指定路径的 FLAC 文件转换为 MP3 文件。
-
     :param flac_file_path: 输入的 FLAC 文件路径
     :param mp3_file_path: 输出的 MP3 文件路径
     """
@@ -40,6 +37,7 @@ def flac_to_mp3(flac_file_path, mp3_file_path):
 
 
 if __name__ == "__main__":
+    # 选中文件列表
     list_flac = open_files_dialog()
 
     # 执行转换
@@ -51,7 +49,7 @@ if __name__ == "__main__":
     print("开始转换...\n")
     for i in list_flac:
         if i[-3:] == "ncm":
-            os.system(f'ncm_to_mp3.exe "{i}" > nul 2>&1')
+            os.system(f'ncm_to_flac.exe "{i}" > nul 2>&1')
             flac_to_mp3(i[:i.rfind(".") + 1] + "flac", i[:i.rfind(".") + 1] + "mp3")
             os.remove(i[:i.rfind(".") + 1] + "flac")
         else:

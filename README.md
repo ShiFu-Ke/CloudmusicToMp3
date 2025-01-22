@@ -13,7 +13,7 @@
 
 2. 执行脚本。
    ```python
-   python main.py
+   python CloudmusicToMp3.py
    ```
 
 3. 选择`ncm`或`flac`文件，可以多选。
