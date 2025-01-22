@@ -48,12 +48,14 @@ if __name__ == "__main__":
     times = 0
     print("开始转换...\n")
     for i in list_flac:
+        index=i.rfind(".")
         if i[-3:] == "ncm":
             os.system(f'ncm_to_flac.exe "{i}" > nul 2>&1')
-            flac_to_mp3(i[:i.rfind(".") + 1] + "flac", i[:i.rfind(".") + 1] + "mp3")
-            os.remove(i[:i.rfind(".") + 1] + "flac")
+            if os.path.isfile(i[:index + 1] + "flac"):
+                flac_to_mp3(i[:index + 1] + "flac", i[:index + 1] + "mp3")
+                os.remove(i[:index + 1] + "flac")
         else:
-            flac_to_mp3(i[:i.rfind(".") + 1] + "flac", i[:i.rfind(".") + 1] + "mp3")
+            flac_to_mp3(i[:index + 1] + "flac", i[:index + 1] + "mp3")
         times += 1
-        print(f"已完成({times}/{length})：{i[i.rfind("\\") + 1:i.rfind(".") + 1]}mp3")
+        print(f"已完成({times}/{length})：{i[i.rfind("\\") + 1:index + 1]}mp3")
     print("\n转换完成！")
