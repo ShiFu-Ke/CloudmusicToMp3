@@ -2,7 +2,7 @@ import os
 
 # 添加 FFmpeg 的 bin 目录到 PATH 环境变量中
 original_path = os.environ.get('PATH', '')
-ffmpeg_bin_dir = f"{os.path.dirname(__file__)}\\ffmpeg\\bin"
+ffmpeg_bin_dir = f"{os.path.dirname(__file__)}\\bin\\ffmpeg\\bin"
 os.environ['PATH'] = f"{ffmpeg_bin_dir};{original_path}"
 
 from pydub import AudioSegment
@@ -50,7 +50,7 @@ if __name__ == "__main__":
     for i in list_flac:
         index=i.rfind(".")
         if i[-3:] == "ncm":
-            os.system(f'ncm_to_flac.exe "{i}" > nul 2>&1')
+            os.system(f'bin\\ncm_to_flac.exe "{i}" > nul 2>&1')
             if os.path.isfile(i[:index + 1] + "flac"):
                 flac_to_mp3(i[:index + 1] + "flac", i[:index + 1] + "mp3")
                 os.remove(i[:index + 1] + "flac")
